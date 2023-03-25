@@ -7,6 +7,7 @@ use App\Models\Orden;
 use App\Models\Producto;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class AdministradorController extends Controller
 {

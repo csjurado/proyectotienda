@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 class SliderController extends Controller
 {
     //
@@ -16,16 +16,13 @@ class SliderController extends Controller
             'descripcion2' => ['required', 'unique:sliders', 'min:15', 'max:255'],
             'imagen_slider' => ['required', 'image', 'mimes:jpg,bmp,png'],
         ]);
-        $fileNameWithExt = $request->file('imagen_slider')->getClientOriginalName();
-        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-        $ext = $request->file('imagen_slider')->getClientOriginalExtension();
-        $fileNameToStore = $fileName . "_" . time() . "." . $ext;
-
-        $path = $request->file('imagen_slider')->storeAs('public/sliderimagenes', $fileNameToStore);
+        $image = $request->file('imagen_slider');
+        $result = Cloudinary::upload($image->getRealPath(), ['folder' => 'sliders']);
+        $url = $result->getSecurePath();
         $slider = new Slider();
         $slider->descripcion1 = $request->input('descripcion1');
         $slider->descripcion2 = $request->input('descripcion2');
-        $slider->imagen_slider = $fileNameToStore;
+        $slider->imagen_slider = $url;
         $slider->save();
         return redirect()->route('administrador.sliders')->with('status', 'Slider Añadido Exitosamente!');
     }
@@ -54,13 +51,10 @@ class SliderController extends Controller
             $request->validate([
                 'imagen_slider' => ['nullable', 'image', 'mimes:jpg,bmp,png'],
             ]);
-            $fileNameWithExt = $request->file('imagen_slider')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $ext = $request->file('imagen_slider')->getClientOriginalExtension();
-            $fileNameToStore = $fileName . "_" . time() . "." . $ext;
-            Storage::delete("public/sliderimagenes/$slider->imagen_slider");
-            $path = $request->file('imagen_slider')->storeAs('public/sliderimagenes', $fileNameToStore);
-            $slider->imagen_slider = $fileNameToStore;
+            $image = $request->file('imagen_slider');
+            $result = Cloudinary::upload($image->getRealPath(), ['folder' => 'sliders']);
+            $url = $result->getSecurePath();
+            $slider->imagen_slider = $url;
         }
         $slider->update();
         return redirect()->route('administrador.sliders')->with('status', 'Slider Actualizado con Exito!');

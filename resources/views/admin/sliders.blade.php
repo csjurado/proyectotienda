@@ -50,7 +50,7 @@
                                             <tr>
                                                 <td>{{ $incrementar }}</td>
                                                 <td>
-                                                    <img src="{{ asset('storage/sliderimagenes/' . $slider->imagen_slider) }}"
+                                                    <img src="{{  $slider->imagen_slider}}"
                                                         style="height : 50px; width : 50px" class="img-circle elevation-2"
                                                         alt="User Image">
                                                 </td>

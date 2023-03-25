@@ -51,7 +51,7 @@
                                                         <div class="type-lb">
                                                             <p class="sale">Comprar</p>
                                                         </div>
-                                                        <img src="{{ asset('storage/productosimagenes/' . $producto->producto_imagen) }}" class="img-fluid"
+                                                        <img src="{{ $producto->producto_imagen }}" class="img-fluid"
                                                             alt="Image">
                                                         <div class="mask-icon">
                                                             <ul>

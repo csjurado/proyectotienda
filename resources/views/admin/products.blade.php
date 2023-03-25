@@ -49,8 +49,13 @@
                                         @foreach ($productos as $producto)
                                             <tr>
                                                 <td>{{ $incrementar }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     <img src="{{ asset('storage/productosimagenes/' . $producto->producto_imagen) }}"
+                                                        style="height : 50px; width : 50px" class="img-circle elevation-2"
+                                                        alt="User Image">
+                                                </td> --}}
+                                                <td>
+                                                    <img src="{{ $producto->producto_imagen }}"
                                                         style="height : 50px; width : 50px" class="img-circle elevation-2"
                                                         alt="User Image">
                                                 </td>

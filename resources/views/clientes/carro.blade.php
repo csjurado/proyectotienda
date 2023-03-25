@@ -46,7 +46,7 @@
                                             <td class="thumbnail-img">
                                                 <a href="#">
                                                     <img class="img-fluid"
-                                                        src="{{ asset('storage/productosimagenes/' . $producto['producto_imagen']) }}"
+                                                        src="{{ $producto['producto_imagen'] }}"
                                                         alt="" />
                                                 </a>
                                             </td>

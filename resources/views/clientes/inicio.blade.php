@@ -6,7 +6,7 @@
         <ul class="slides-container">
             @foreach ($sliders as $slider)
                 <li class="text-center">
-                    <img src="{{ asset('storage/sliderimagenes/' . $slider->imagen_slider) }}" alt="">
+                    <img src="{{ $slider->imagen_slider }}" alt="">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
@@ -129,7 +129,7 @@
                                 <div class="type-lb">
                                     <p class="sale">Comprar</p>
                                 </div>
-                                <img src="{{ asset('storage/productosimagenes/' . $producto->producto_imagen) }}" class="img-fluid" alt="Image">
+                                <img src="{{ $producto->producto_imagen }}" class="img-fluid" alt="Image">
                                 <div class="mask-icon">
                                     <ul>
                                         <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i

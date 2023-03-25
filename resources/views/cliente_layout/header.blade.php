@@ -124,7 +124,7 @@
                         @foreach (Session::get('topCart') as $producto)
                             <li>
                                 <a href="#" class="photo"><img
-                                        src="{{ asset('storage/productosimagenes/' . $producto['producto_imagen']) }}"
+                                        src="{{  $producto['producto_imagen'] }}"
                                         class="cart-thumb" alt="" /></a>
                                 <h6><a href="#">{{ $producto['producto_nombre'] }} </a></h6>
                                 <p>{{ $producto['qty'] }}x - <span class="price">$
